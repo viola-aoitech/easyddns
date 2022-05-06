@@ -1,0 +1,19 @@
+{
+    "DNS": {
+        "name": "Dnspod",
+        "login": {
+            "access id": "89873",
+            "access key": "d4a48203516889f91940a55626807361"
+        }
+    },
+    "Record 1": {
+        "type": "AAAA",
+        "domain name": "www.aoitech.cn",
+        "ttl": "300"
+    },
+    "Record 2": {
+        "type": "AAAA",
+        "domain name": "opt.aoitech.cn",
+        "ttl": "300"
+    }
+}

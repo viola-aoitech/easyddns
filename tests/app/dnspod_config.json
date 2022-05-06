@@ -1,0 +1,14 @@
+{
+    "DNS": {
+        "name": "Dnspod",
+        "login": {
+            "user id": "89873",
+            "user token": "d4a48203516889f91940a55626807361"
+        }
+    },
+    "Record 1": {
+        "type": "AAAA",
+        "domain name": "www.aoitech.cn",
+        "ttl": "300"
+    }
+}
