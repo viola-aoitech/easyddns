@@ -1,19 +1,19 @@
 {
     "DNS": {
-        "name": "Dnspod",
+        "name": "Aliyun",
         "login": {
-            "access id": "89873",
-            "access key": "d4a48203516889f91940a55626807361"
+            "access id": "123456",
+            "access key": "123456123456123456123456123456"
         }
     },
     "Record 1": {
         "type": "AAAA",
-        "domain name": "www.aoitech.cn",
+        "domain name": "bs.xxxx.cn",
         "ttl": "300"
     },
-    "Record 2": {
+    "Need 1": {
         "type": "AAAA",
-        "domain name": "opt.aoitech.cn",
+        "domain name": "opt.xxxx.cn",
         "ttl": "300"
     }
 }
