@@ -1,4 +1,4 @@
-# Easy DDNS 客户端 -- 领域驱动设计实践
+# Easy DDNS Client -- a practice for domain drvien design
 
 ![design-standards](https://img.shields.io/static/v1?label=design-standards&message=DDD&color=informational)
 ![platform](https://img.shields.io/badge/platform-windows%3Alinux%3Aunix-brightgreen)
@@ -7,6 +7,7 @@
 ---
 
 ## 项目介绍
+
 
 基于 python 3.x 和 requests 的动态解析服务的**客户端**，支持**腾讯云(Dnspod)解析服务**。支持多域名同时解析、多域名连接状态查询，适于建站和学习领域驱动设计技术。
 
