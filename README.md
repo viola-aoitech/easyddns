@@ -94,11 +94,11 @@ python easyddns config.json -d #显示本地和 DNS 服务器记录情况
 
 ### 用例分析
 
-![use-case](docs/pics/user-cases.png)
+![use-case](https://github.com/viola-aoitech/easyddns/blob/e7ff68c66dad55b7efd8767665e096a361446aa3/docs/pics/user-cases.png)
 
 ### 架构示图
 
-![layers](docs/pics/EasyDDNS API layers.png)
+![layers](https://github.com/viola-aoitech/easyddns/blob/e7ff68c66dad55b7efd8767665e096a361446aa3/docs/pics/EasyDDNS%20API%20layers.png)
 
 本项目采用一个简化的[六边形架构](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software))，基于依赖转置原则，便于扩展到多个 DNS 服务 API 。例如，如果需要新加入对aliyun 动态解析 API 进行封装，那么只需要添加一个 AliyunProxy 、Aliyun Session和 login 的 python 包即可。
 
@@ -111,7 +111,7 @@ python easyddns config.json -d #显示本地和 DNS 服务器记录情况
 
 ### 领域模型视图
 
-![domain-model](docs/pics/domain-model.png)
+![domain-model](https://github.com/viola-aoitech/easyddns/blob/e7ff68c66dad55b7efd8767665e096a361446aa3/docs/pics/domain-model.png)
 
 **业务逻辑说明：**
 
