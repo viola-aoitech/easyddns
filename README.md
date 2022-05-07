@@ -10,14 +10,14 @@
 
 基于 python 3.x 和 requests 的动态解析服务的**客户端**，支持**腾讯云(Dnspod)解析服务**。支持多域名同时解析、多域名连接状态查询，适于建站和学习领域驱动设计技术。
 
-DDNS 技术在建站、NAS、远程监控等基于域名实现的网络应用中具有广泛应用，其基本业务原理：是将本地随时间变换的 IP 地址与远端云解析的解析记录的 IP 地址进行同步，常见的方法是*定时同步*。要保证该业务执行的稳定和顺畅，必须同时满足：本地 IP 获取精确、顺畅和解析服务端记录修改操作符合云端规则。如果有可能，支持更多的云解析网站，或者做到多记录、多网站的全自动解析，特别是在一个云网站宕机或者断联以后，能够绑定到后备解析网站，则可以极大的方便用户。可见，该业务原理简单，但业务复杂，为了减少开发工作量，本项目采用面向对象的、领域驱动设计来完成。
+DDNS 技术在建站、NAS、远程监控等基于域名实现的网络应用中广泛应用，其基本业务原理：是将本地随时间变换的 IP 地址与远端云解析的解析记录的 IP 地址进行同步，常见的方法是**定时同步**，该定时同步会**长期、持续、高频的运行**在需要解析的主机上，因此，零缺陷、服务稳定是该客户端必须具有的质量特性。要保证该特性，就必须同时满足：本地 IP 获取精确、顺畅，解析服务端记录修改操作符合云端规则。如果有可能，支持更多的云解析网站或者做到多记录、多网站的全自动解析，特别是在一个云网站宕机或者断联以后，能够绑定到后备解析网站，则可以极大的方便用户。可见，该项目原理简单，但如果要做好，业务其实比较复杂。为了减少开发工作量，本项目采用面向对象的、领域驱动设计来完成。
 
 ## 主要特性
 
 - [x] 支持腾讯云解析服务。
 - [x] 支持 IP V4。
 - [x] 基于 python 环境，支持多平台运行(如 AIX、HPUX、Solaris、Linux、Windows 等)。
-- [x] 支持命令行界面(Command-Line Interface)，基于 tqdm 。
+- [x] 支持命令行界面(Command-Line Interface)，基于 tqdm 和 argpraser 。
 - [x] 支持多个域名、子域名解析（数量以 DNS 服务网站为准）。
 - [x] 支持命令行或服务方式运行。
 - [x] 稳定、高速、无卡死。
@@ -40,21 +40,12 @@ DDNS 技术在建站、NAS、远程监控等基于域名实现的网络应用中
 git clone git@github.com:viola-aoitech/easyddns.git
 cd easy-ddns
 python setup.py install
-
 ```
 
 ## 使用方法
 
 1. 到提供 ddns 服务的网站，注册登录获得 ddns 服务的账户信息。
-2. 填写注册表单 `config.json`.
-
-### 命令行运行
-
-根据命令行提示来运行
-
-```shell
-python easyddns -h # or --help
-```
+2. 填写注册表单[`config.json`说明](/conifg-samples/README.md).
 
 ### json 示例
 
@@ -75,23 +66,64 @@ python easyddns -h # or --help
 }
 ```
 
+### 命令行运行
+
+根据命令行提示来运行
+
+```shell
+python easyddns -h # or --help
+```
+
 ### 自动解析
 
 shell 命令行运行:
 
 ```shell
-python easyddns config.json #自动运行同步
+python easyddns config.json # 自动运行同步。
 ```
 
 ```shell
 python easyddns config.json -d #显示本地和 DNS 服务器记录情况
 ```
 
+### 测试方法
+
+测试基于 pytest 简易方法, 安装完成以后，在项目根目录下运行`pytest -v -s`。
+
+## UML 设计图
+
+### 用例分析
+
+![use-case](docs/pics/user-cases.png)
+
+### 架构示图
+
+![layers](docs/pics/EasyDDNS API layers.png)
+
+本项目采用一个简化的[六边形架构](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software))，基于依赖转置原则，便于扩展到多个 DNS 服务 API 。例如，如果需要新加入对aliyun 动态解析 API 进行封装，那么只需要添加一个 AliyunProxy 、Aliyun Session和 login 的 python 包即可。
+
+**各层职责说明**：
+- EasyDDNS: 应用层,负责将API，封装到一个CLI脚本中。
+- Serivce Layer: 应用服务层， 负责处理EasyDDNS的软件服务。
+- Adaptor: 适配器层, 也称为基础设施层.负责封装远端 DNS 解析服务网站的提供的API。
+- synchronization: 领域模型层，负责对本地和远端的记录进行同步。
+
+
+### 领域模型视图
+
+![domain-model](docs/pics/domain-model.png)
+
+**业务逻辑说明：**
+
+- DmzRecord 用以记录用户登陆信息和用户的IP信息。
+- DnspodRecord 用以记录DNS的IP信息和相关记录信息。
+- RecordSynchronizer 用以进行同步操作，设 DmzRecord 为主控记录，DnspodRecord 为从属记录，当DmzRecord 记录发生更新，则同时更新 DnspodRecord 的IP 信息。如果同步完成，则进行部署。
+
+> **提示**：如果需要本项目详细设计图，可以安装 pylint 和 graphviz。在命令行运行：`pyreverse -o png src`生成本项目的详细类图和依赖关系图。
+
 ## 开源协议
 
 - Apache License Version 2.0
-
-## UML 设计图
 
 ## 参考资料
 
@@ -104,7 +136,7 @@ python easyddns config.json -d #显示本地和 DNS 服务器记录情况
 ### 待完成功能
 
 - [ ] pypi 自动安装。
-- [ ] 用法说明文档
+- [ ] 易懂用法说明文档
 - [ ] 支持 IPV6
 - [ ] 支持阿里云.
 - [ ] 支持 cloudfire 云.

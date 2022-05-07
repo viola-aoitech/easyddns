@@ -1,0 +1,19 @@
+{
+    "DNS": {
+        "name": "Dnspod",
+        "login": {
+            "access id": "123456",
+            "access key": "123456123456123456123456123456"
+        }
+    },
+    "Record 1": {
+        "type": "AAAA",
+        "domain name": "www.123456.com",
+        "ttl": "300"
+    },
+    "Need 1": {
+        "type": "AAAA",
+        "domain name": "opt.123456.cn",
+        "ttl": "300"
+    }
+}

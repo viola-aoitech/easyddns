@@ -3,7 +3,7 @@
 # Copyright (c) 2020-2025 viola
 # @Date Time:2022/03/16 17:24:55
 # @File Name:timer.py
-"""Code Description: 性能测试测试模型, us 精度
+"""time cost measurement contenxt manager
 """
 
 from __future__ import annotations
