@@ -1,3 +1,4 @@
+from easyddns.domain import deploy
 from typing import Dict
 
 from easyddns.adapters.dnsproxy import DnspodProxy
@@ -108,3 +109,20 @@ def test_using_dnspod_service_manual_deploy_sync():
     mock_ip, _ = dnspod_service.query(timeout=10)
 
     print(f"{mock_ip} test result is {ans}")
+
+def test_getting_a_record_without_exit():
+    sync = register_sychronizer(
+        user_id="89873",
+        token="d4a48203516889f91940a55626807361",
+        domain="aoitech.cn",
+        subdomain="py",
+    )
+    dnspod_service = DnspodProxy()
+    dnspod_service.set_sync(sync)
+
+    ipv4_address, _ = dnspod_service.query(timeout=10)
+    print(ipv4_address)
+    if not ipv4_address:
+        _params = deploy.make_dnspod_paramas(sync)
+        id = dnspod_service.write_new_record(_params)
+        print(id)

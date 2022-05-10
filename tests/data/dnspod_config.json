@@ -2,18 +2,23 @@
     "DNS": {
         "name": "Dnspod",
         "login": {
-            "access id": "123456",
-            "access key": "123456123456123456123456123456"
+            "user id": "89873",
+            "user token": "d4a48203516889f91940a55626807361"
         }
     },
     "Record 1": {
         "type": "AAAA",
-        "domain name": "bs.xxxx.cn",
+        "domain name": "www.aoitech.cn",
+        "ttl": "300"
+    },
+    "Record 2": {
+        "type": "AAAA",
+        "domain name": "opt.aoitech.cn",
         "ttl": "300"
     },
     "Need 1": {
         "type": "AAAA",
-        "domain name": "opt.xxxx.cn",
+        "domain name": "www.piv3d.com",
         "ttl": "300"
     }
 }

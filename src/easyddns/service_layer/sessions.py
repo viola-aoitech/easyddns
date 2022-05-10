@@ -22,7 +22,7 @@ from easyddns.domain.synchronizes.synchronizer import (RecordSynchronizer,
 
 
 class SessionError(Exception):
-    """Dnspod 服务异常
+    """DDNS Session Exception
     """
 
 
@@ -43,7 +43,8 @@ class Session(abc.ABC):
 
 
 class DnspodSession(Session):
-    """The session model for manage ipv4 finder proxy and dnspod api proxy.
+    """This class is a session model for managing ipv4 finder proxy and
+    DNSPOD's API Functions.
     """
 
     def __init__(self, logger: Callable = print) -> None:

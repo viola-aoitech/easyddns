@@ -18,7 +18,8 @@ from easyddns.service_layer import sessions
 
 
 class UnitOfWork(abc.ABC):
-    """make services like a atomic work.
+    """TThis class encapsulates context management with the unit of work
+    pattern.
     """
     dns: sessions.Session
     connect: bool = False

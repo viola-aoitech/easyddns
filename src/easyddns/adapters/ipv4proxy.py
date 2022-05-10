@@ -22,9 +22,8 @@ HEADERS = {
 
 
 class IPv4Proxy(BaseQuery):
-    """
-    提供在 NAT 网络架构下，基于Http协议，获取IP的基本方法。该方法从多个外部 Public IP提供网
-    站读取查询结果，提取其中的 ipv4 地址。
+    """This class implemented a proxy pattern in charge of finding a local IP
+    address from remote websites written into a config file.
     """
 
     @staticmethod
@@ -43,7 +42,6 @@ class IPv4Proxy(BaseQuery):
               url: str, timeout: int = 4, logger: Any = print
               ) -> Tuple[str, str]:
         """query public ip from self providers.
-        @return: (url,ip) if success, else (url,"failed")
         """
         checker = IPv4AdressPolicy()
         headers = get_headers()
@@ -62,7 +60,7 @@ class IPv4Proxy(BaseQuery):
 
 
 def get_headers() -> dict:
-    """camouflage headers
+    """This function gets a camouflage header with the request operation.
     """
     agent = {"User-Agent": random.choice(lst_agent_phone)}
     return agent

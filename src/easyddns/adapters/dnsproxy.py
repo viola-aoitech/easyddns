@@ -20,10 +20,10 @@ class DnspodError(Exception):
 
 
 class DnspodProxy(BaseQuery, BaseDeploy):
-    """
-    Dnspod 服务
-    :param  BaseQuery: 查询服务接口
-    :param  BaseDeploy: 部署服务接口
+    """This class implements two interfaces with queries and deploys for the
+    DNSPOD website.
+    :param  BaseQuery: a base class
+    :param  BaseDeploy: a base class
     """
     sync: synchronizes.RecordSynchronizer
 

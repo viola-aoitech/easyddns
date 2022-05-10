@@ -40,7 +40,8 @@ class BaseQuery(abc.ABC):
 
 
 class BaseDeploy(abc.ABC):
-    """部署服务接口
+    """This base class describes deploying a sync in a remote DNS Server
+    website.
     """
     @abc.abstractmethod
     def write(self, **kwargs) -> int:

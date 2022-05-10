@@ -8,7 +8,9 @@
 
 ## 项目介绍
 
-基于 python 3.x 和 requests 的动态解析服务的**客户端**，支持**腾讯云(Dnspod)解析服务**。支持多域名同时解析、多域名连接状态查询，适于建站和学习领域驱动设计技术。DDNS 技术在建站、NAS、远程监控等基于域名实现的网络应用中广泛应用，其基本业务原理是将本地随时间变换的 IP 地址与远端云解析的解析记录的 IP 地址进行同步，常见的方法是**定时同步**。
+基于 python 3.x 和 requests 的动态解析服务的**客户端**，支持**腾讯云(Dnspod)解析服务**。支持多域名同时解析、多域名连接状态查询，适于建站和学习领域驱动设计技术。
+
+DDNS 技术在建站、NAS、远程监控等基于域名实现的网络应用中广泛应用，其基本业务原理：是将本地随时间变换的 IP 地址与远端云解析的解析记录的 IP 地址进行同步，常见的方法是**定时同步**，该定时同步会**长期、持续、高频的运行**在需要解析的主机上，因此，零缺陷、服务稳定是该客户端必须具有的质量特性。要保证该特性，就必须同时满足：本地 IP 获取精确、顺畅，解析服务端记录修改操作符合云端规则。如果有可能，支持更多的云解析网站或者做到多记录、多网站的全自动解析，特别是在一个云网站宕机或者断联以后，能够绑定到后备解析网站，则可以极大的方便用户。可见，该项目原理简单，但如果要做好，业务其实比较复杂。为了减少开发工作量，本项目采用面向对象的、领域驱动设计来完成。
 
 ## 主要特性
 
@@ -92,11 +94,11 @@ python easyddns config.json -d #显示本地和 DNS 服务器记录情况
 
 ### 用例分析
 
-![use-case](https://github.com/viola-aoitech/easyddns/blob/e7ff68c66dad55b7efd8767665e096a361446aa3/docs/pics/user-cases.png)
+![use-case](docs/pics/user-cases.png)
 
 ### 架构示图
 
-![layers](https://github.com/viola-aoitech/easyddns/blob/e7ff68c66dad55b7efd8767665e096a361446aa3/docs/pics/EasyDDNS%20API%20layers.png)
+![layers](docs/pics/EasyDDNS API layers.png)
 
 本项目采用一个简化的[六边形架构](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software))，基于依赖转置原则，便于扩展到多个 DNS 服务 API 。例如，如果需要新加入对aliyun 动态解析 API 进行封装，那么只需要添加一个 AliyunProxy 、Aliyun Session和 login 的 python 包即可。
 
@@ -109,7 +111,7 @@ python easyddns config.json -d #显示本地和 DNS 服务器记录情况
 
 ### 领域模型视图
 
-![domain-model](https://github.com/viola-aoitech/easyddns/blob/e7ff68c66dad55b7efd8767665e096a361446aa3/docs/pics/domain-model.png)
+![domain-model](docs/pics/domain-model.png)
 
 **业务逻辑说明：**
 

@@ -10,10 +10,10 @@ from pathlib import Path
 
 
 def register_logger(name: str) -> logging.Logger:
-    """注册一个python logger
+    """This function registers a built-in logger with the project name.
 
-    :param str name: 主机名称
-    :return logging: 返回
+    :param str name: dmz name
+    :return logging: python file logger object.
     """
     datefmt = r'%Y-%m-%d %H:%M:%S'
     record_format = r"%(asctime)s::%(levelname)s::"
